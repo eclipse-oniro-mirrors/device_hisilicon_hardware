@@ -1,5 +1,7 @@
 #!/bin/bash
-# Copyright (c) 2020 Huawei Device Co., Ltd. All rights reserved.
+# Copyright 2020-2020, Huawei Technologies Co. Ltd.
+#
+# ALL RIGHTS RESERVED
 #
 # Compile media/hal project, this is the entrance script
 
@@ -11,8 +13,7 @@ HOS_KERNEL_TYPE="$3"
 HOS_BUILD_COMPILER="$4"
 
 function main(){
-    ROOT_DIR=$(cd $(dirname "$0");pwd)
-    CHIP_TYPE="$2"
+    CUR_DIR=$(cd $(dirname "$0");pwd)
     unset OS_TYPE
     BUILD_COMPILER="llvm"
     if [ "$HOS_KERNEL_TYPE" = "liteos_a" ];then
@@ -24,13 +25,13 @@ function main(){
         BUILD_COMPILER="gcc"
     fi
 
-    cp -rf $ROOT_DIR/hal/audio/$CHIP_TYPE/$BUILD_COMPILER/$OS_TYPE/libs/libaudio_hw.so $OUT_DIR/
-    cp -rf $ROOT_DIR/hal/codec/$CHIP_TYPE/$BUILD_COMPILER/$OS_TYPE/libs/libcodec.so $OUT_DIR/
-    cp -rf $ROOT_DIR/hal/codec/$CHIP_TYPE/$BUILD_COMPILER/$OS_TYPE/libs/libhiaacdec.so $OUT_DIR/
-    cp -rf $ROOT_DIR/hal/format/$CHIP_TYPE/$BUILD_COMPILER/$OS_TYPE/libs/libformat_demuxer.so $OUT_DIR/
-    cp -rf $ROOT_DIR/hal/format/$CHIP_TYPE/$BUILD_COMPILER/$OS_TYPE/libs/libformat_muxer.so $OUT_DIR/
+    cp -rf $CUR_DIR/hal/audio/$BOARD_NAME/$BUILD_COMPILER/$OS_TYPE/libs/libaudio_hw.so $OUT_DIR/
+    cp -rf $CUR_DIR/hal/codec/$BOARD_NAME/$BUILD_COMPILER/$OS_TYPE/libs/libcodec.so $OUT_DIR/
+    cp -rf $CUR_DIR/hal/codec/$BOARD_NAME/$BUILD_COMPILER/$OS_TYPE/libs/libhiaacdec.so $OUT_DIR/
+    cp -rf $CUR_DIR/hal/format/$BOARD_NAME/$BUILD_COMPILER/$OS_TYPE/libs/libformat_demuxer.so $OUT_DIR/
+    cp -rf $CUR_DIR/hal/format/$BOARD_NAME/$BUILD_COMPILER/$OS_TYPE/libs/libformat_muxer.so $OUT_DIR/
 
-    cp -rf $ROOT_DIR/hal/format/$CHIP_TYPE/$BUILD_COMPILER/$OS_TYPE/libs/libffmpeg_demuxer.so $OUT_DIR/
+    cp -rf $CUR_DIR/hal/format/$BOARD_NAME/$BUILD_COMPILER/$OS_TYPE/libs/libffmpeg_demuxer.so $OUT_DIR/
 }
 
 main "$@"
